@@ -52,17 +52,20 @@ export default {
 .hourly-item .temprature .temp_c{
     font-size: 2rem;
     font-weight: bold;
+    color: var(--white);
 }
 
 .hourly-item .temprature .feel-temp{
     font-size: 1rem;
     font-weight: bold;
+    color: var(--secondary);
 }
 .hourly-item .date{
     font-size: 1rem;
     font-weight: bold;
     width: 75%;
     text-align: center;
+    color: var(--secondary);
     margin: 0 auto;
 }
 </style>

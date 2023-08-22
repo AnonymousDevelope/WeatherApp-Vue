@@ -11,23 +11,25 @@
         />
       </div>
     </div>
+    <WeatherHourly v-if="isOpenHourly"/>
   </div>
 </template>
 
 <script>
 import WeatherDailyItem from './weather-daily-item.vue';
 import { mapState } from 'vuex';
-
+import WeatherHourly from './weather-hourly.vue'
 export default {
   components: {
     WeatherDailyItem,
+    WeatherHourly
   },
-  name: 'App',
   computed: {
     ...mapState({
       error: state => state.weather.error,
       loading: state => state.weather.loading,
       daily: state => state.weather.data?.forecast?.forecastday,
+      isOpenHourly: state => state.weather.isOpenHourly,
     }),
   },
   methods: {

@@ -9,20 +9,10 @@
             </li>
         </ul>
     </div>
-    <WeatherHourly v-if="isOpenHourly"/>
 </template>
 <script>
-import WeatherHourly from './weather-hourly.vue'
-import { mapState } from 'vuex';
 export default {
-    components: {
-        WeatherHourly
-    },
-    computed:{
-        ...mapState({
-            isOpenHourly: state => state.weather.isOpenHourly,
-        })
-    }
+   
 }
 </script>
 <style scoped>
