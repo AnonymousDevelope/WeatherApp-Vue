@@ -1,10 +1,11 @@
 <template>
     <div class="weather-card">
-        <div class="weather-title">
+        <Loading v-if="loading"/>
+        <div v-if="!loading" class="weather-title">
             Weather of {{ currentLocation }}
             <!-- write city -->
         </div>
-        <div class="weather-card-main">
+        <div v-if="!loading" class="weather-card-main">
             <div class="container">
                 <div class="row align-items-center justify-content-center px-2 py-1">
                     <div class="col-md-4">
@@ -41,58 +42,61 @@
                     <div class="col-md-4">
                         <ul class="list-group">
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-sunrise"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     Quyosh chiqishi {{ astro?.sunrise }}
                                 </div>
                             </li>
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-sunset"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     Quyosh botishi {{ astro?.sunset }}
                                 </div>
                             </li>
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-droplet"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     Namlik {{ humidity }}%
                                 </div>
                             </li>
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-wind"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     {{ wind }} km/h
                                 </div>
                             </li>
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-compass"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     {{ wind_dir == "N" ? "North" :
-                                        wind_dir == "S" ?
-                                            "South" : wind_dir == "E" ?
-                                                "East" : wind_dir == "W" ?
-                                                    "West" : wind_dir == "NE" ?
-                                                        "North East" : wind_dir == "NW" ?
-                                                            "North West" : wind_dir == "SE" ?
-                                                                "South East" : wind_dir == "SW" ?
-                                                                    "South West" : wind_dir }}
+                                        wind_dir == "S" ? "South" : wind_dir == "E" ?
+                                            "East" : wind_dir == "W" ?
+                                                "West" : wind_dir == "NE" ?
+                                                    "North East" : wind_dir == "NW" ?
+                                                        "North West" : wind_dir == "SE" ?
+                                                            "South East" : wind_dir == "SW" ?
+                                                                "South West" : wind_dir == "NNE" ?
+                                                                "North North East" : wind_dir == "NNW"?
+                                                                "North North West" : wind_dir == "SSE"?
+                                                                "South South East" : wind_dir 
+                                                             }}
                                 </div>
                             </li>
                             <li class="row">
-                                <div class="col-md-2">
+                                <div class="col-2">
                                     <i class="bi bi-arrow-up"></i>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     1023.00 mb
                                 </div>
                             </li>
@@ -120,11 +124,12 @@ export default {
             astro: state => state?.weather?.data?.forecast.forecastday[0].astro,
             humidity: state => state?.weather?.data?.current.humidity,
             wind: state => state?.weather?.data?.current.wind_kph,
-            wind_dir: state => state?.weather?.data?.current.wind_dir
+            wind_dir: state => state?.weather?.data?.current.wind_dir,
+            loading: state => state?.weather?.loading
         })
     },
     created() {
-        this.$store.dispatch('getData', 'Tashkent')
+        this.$store.dispatch('getData', 'Tashkent');
     },
     methods: {
         converDate(date) {

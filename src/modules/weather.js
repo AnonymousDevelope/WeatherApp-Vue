@@ -30,7 +30,9 @@ const actions = {
             WeatherService.getData(city).then(res=>{
                 commit('getDataSuccess',res.data);
                 resolve(res.data);
-                console.log(res.data);
+            }).catch(err=>{
+                commit('getDataError',err)
+                reject(err);
             })
         })
     }

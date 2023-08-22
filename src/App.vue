@@ -1,19 +1,35 @@
 <template>
   <div class="">
-    <WeatherHeader/>
-    <WeatherCard/>
+    <WeatherHeader />
+    <WeatherCard v-if="!error" />
+    <div class="ui-components">
+      <Alert v-if="error?.message == 'Network Error'">
+        Iltimos Internet bilan ulanishni tekshirib ko'ring
+      </Alert>
+      <Alert v-if="error?.response?.status == 400">
+        Ma'lumotlar topilmadi iltimos qaytdan kiriting
+      </Alert>
+    </div>
+    <WeatherDaily />
   </div>
 </template>
 
 <script>
-import {WeatherHeader,WeatherCard} from './components'; // Doimiy fayl kiritish     // Doimiy fayl kiritish
-
+import { WeatherHeader, WeatherCard,WeatherDaily } from './components'; // Doimiy fayl kiritish     // Doimiy fayl kiritish
+import { mapState } from 'vuex'
 export default {
-  name: 'App', 
+  name: 'App',
   components: {
     WeatherCard,
-    WeatherHeader
+    WeatherHeader,
+    WeatherDaily
   },
+  computed: {
+    ...mapState({
+      error: state => state.weather.error,
+      loading: state => state.weather.loading,
+    })
+  }
 }
 </script>
 

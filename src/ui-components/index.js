@@ -1,2 +1,4 @@
 import Input from './Input.vue';
-export default [Input];
+import Alert from './Alert.vue'
+import Loading from './Loading.vue'
+export default [Input,Alert,Loading];

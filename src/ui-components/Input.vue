@@ -1,7 +1,7 @@
 <template>
     <div class="input-group">
-        <input type="text" placeholder="Search . . ." v-model="searchText">
-        <button class="btn" @click="search"><i class="bi bi-search"></i></button>
+        <input type="text" placeholder="Search . . ." :onkeydown="searchText ? handleKeyUp : null" v-model="searchText">
+        <button :disabled="!searchText" class="btn " @click="search"><i class="bi bi-search"></i></button>
     </div>
 </template>
 
@@ -18,7 +18,14 @@ export default {
     methods: {
         search() {
             this.$store.dispatch('getData', this.searchText);
-        }
+            this.searchText = '';
+        },
+       handleKeyUp(e) {
+           if (e.keyCode == 13) {
+               this.search();
+               this.searchText = '';
+           }
+       }
     }
 };
 </script>
