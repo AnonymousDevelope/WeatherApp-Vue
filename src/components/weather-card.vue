@@ -106,11 +106,11 @@
             </div>
         </div>
     </div>
+
 </template>
 <script>
 import { mapState } from "vuex"
-const daysOfWeek = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
-const monthsOfYear = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'];
+import  {convertDate} from "@/utils"
 export default {
     name: 'Card',
     computed: {
@@ -133,10 +133,7 @@ export default {
     },
     methods: {
         converDate(date) {
-            const nowDate = new Date(date);
-            const day = daysOfWeek[nowDate.getDay()];
-            const month = monthsOfYear[nowDate.getMonth()];
-            return `${day} ${nowDate.getDate()} ${month}`
+            return convertDate(date)
         }
     }
 }

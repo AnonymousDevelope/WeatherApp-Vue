@@ -7,7 +7,7 @@
         <div class="weather_search">
             <Input />
         </div>
-        <div class="weather-menu">  
+        <div class="weather-menu ">  
             <weatherNavbarMenu />
         </div>
     </div>
@@ -44,5 +44,11 @@ export default {
     .weather_header_logo img{
         height: 50px;
         width: 50px;
+    }
+    @media screen and (max-width: 760px) {
+      .weather_header .weather-menu{
+        display: none;
+      } 
+        
     }
 </style>

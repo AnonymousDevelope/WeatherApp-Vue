@@ -1,7 +1,7 @@
 <template>
-    <div class="input-group">
+    <div class="input-group" >
         <input type="text" placeholder="Search . . ." :onkeydown="searchText ? handleKeyUp : null" v-model="searchText">
-        <button :disabled="!searchText" class="btn " @click="search"><i class="bi bi-search"></i></button>
+        <button  :disabled="!searchText" class="btn " @click="search"><i class="bi bi-search"></i></button>
     </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
                this.searchText = '';
            }
        }
-    }
+    },
 };
 </script>
 
